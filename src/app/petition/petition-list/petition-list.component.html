@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Listado de Peticiones</h1>
+
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="petitionId">
+      <mat-header-cell *matHeaderCellDef> Identificador </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.petitionId}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="petitionTitle">
+      <mat-header-cell *matHeaderCellDef> Título petición </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.petitionTitle}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="petitionDescription">
+      <mat-header-cell *matHeaderCellDef> Descripción petición </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.petitionDescription}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="petitionDate">
+      <mat-header-cell *matHeaderCellDef> Fecha creación petición </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.petitionTitle}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <div class="buttons">
+    <button mat-flat-button color="primary"(click)="createPetition()">Nueva peticion</button>
+  </div>
+</div>

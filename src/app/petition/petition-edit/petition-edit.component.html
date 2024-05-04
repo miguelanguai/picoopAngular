@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Crear petición</h1>
+
+  <form>
+      <mat-form-field>
+          <mat-label>Titulo</mat-label>
+          <input type="text" matInput placeholder="Título de la peticion" [(ngModel)]="petition.petitionTitle" name="title" required>
+          <mat-error>El título no puede estar vacío</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+          <mat-label>Descripción</mat-label>
+          <input type="text" matInput placeholder="Descripción de la peticion" [(ngModel)]="petition.petitionDescription" name="description" required>
+          <mat-error>La descripción no puede estar vacía</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+          <input type="text" matInput placeholder="{{ currentDate | date: 'yyyy-MM-dd' }}" [(ngModel)]="petition.petitionTitle" name="date" disabled>
+      </mat-form-field>
+  </form>
+
+  <div class="buttons">
+      <button mat-stroked-button (click)="onClose()">Cerrar</button>
+      <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+  </div>
+</div>
