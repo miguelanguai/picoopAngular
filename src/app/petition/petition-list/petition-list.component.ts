@@ -14,7 +14,7 @@ export class PetitionListComponent implements OnInit{
 
 
   dataSource = new MatTableDataSource<Petition>();
-  displayedColumns: string[] = ['petitionId', 'petitionTitle', 'petitionDescription', 'petitionDate'];
+  displayedColumns: string[] = ['petitionTitle', 'petitionDescription', 'petitionDate'];
 
   constructor(
     private petitionService: PetitionService,
