@@ -13,11 +13,16 @@ import { CoreModule } from './core/core.module';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginComponent } from './auth/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
     CoreModule,
     MatIconModule,
     MatButtonModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
