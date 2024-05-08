@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Petition } from './model/Petition';
-import { PETITION_DATA } from './model/mock-petitions';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
