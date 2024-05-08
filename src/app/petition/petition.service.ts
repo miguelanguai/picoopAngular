@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Petition } from './model/Petition';
 import { PETITION_DATA } from './model/mock-petitions';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +17,19 @@ export class PetitionService {
     return this.http.get<Petition[]>('http://localhost:8080/public/petitions');
   }
 
-  savePetition(petition: Petition): Observable<Petition> {
+  savePetition(petition: Petition, token: string): Observable<Petition> {
     let url = 'http://localhost:8080/user/petitions';
-        if (petition.petitionId != null) url += '/'+petition.petitionId;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
-        return this.http.put<Petition>(url, petition);
+    if (petition.petitionId != null) {
+      url += `/${petition.petitionId}`;
+    }
 
+    return this.http.put<Petition>(url, petition, { headers });
   }
+
 
   deletePetition(petition : number): Observable<any> {
     return of(null);

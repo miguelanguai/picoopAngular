@@ -28,7 +28,8 @@ export class PetitionEditComponent implements OnInit{
   }
 
   onSave() {
-    this.petitionService.savePetition(this.petition).subscribe(result => {
+    const token = localStorage.getItem('token')||'';
+    this.petitionService.savePetition(this.petition, token).subscribe(result => {
       this.dialogRef.close();
     });
   }
