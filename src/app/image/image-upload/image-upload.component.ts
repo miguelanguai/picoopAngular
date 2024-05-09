@@ -81,7 +81,8 @@ obtenerFormatoImagen(file: File): string {
 // Modifica onSave para llamar a obtenerFormatoImagen y establecer image.img_type antes de enviar el formulario
 onSave() {
   const formData = new FormData();
-
+  // imagenes nuevas son seteadas a uploaded
+  this.image.img_stage='uploaded';
   formData.append('file', this.image.image);
   formData.append('petition_id', this.petition.petitionId.toString());
   formData.append('imgTitle', this.image.imgTitle);
