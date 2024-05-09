@@ -41,7 +41,7 @@ export class RegisterComponent {
     try {
       const response = await this.authService.register(this.formData);
       if (response.statusCode === 200) {
-        this.router.navigate(['/public/images']);
+        this.router.navigate(['/auth/signin']);
       } else {
         this.showError(response.message);
       }
