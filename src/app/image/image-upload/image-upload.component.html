@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>Subir imagen</h1>
+
+  <form>
+    <mat-form-field>
+      <mat-label>Titulo</mat-label>
+      <input type="text" matInput placeholder="Título de la peticion" [value]="petition.petitionTitle" name="title"
+        disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Descripción</mat-label>
+      <input type="text" matInput placeholder="Descripción de la peticion" [value]="petition.petitionDescription"
+        name="description" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Titulo</mat-label>
+      <input type="text" matInput placeholder="{{petition.petitionTitle}}" [(ngModel)]="image.imgTitle" name="title"
+        required>
+      <mat-error>El título no puede estar vacío</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Descripción</mat-label>
+      <input type="text" matInput placeholder="{{petition.petitionDescription}}" [(ngModel)]="image.img_description"
+        name="description" required>
+      <mat-error>La descripción no puede estar vacía</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{ currentDate | date: 'yyyy-MM-dd' }}"
+        [(ngModel)]="image.img_uploadingDate" name="date" disabled>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <input type="file" (change)="onFileSelected($event)" accept=".jpeg,.jpg,.png"/>
+      <mat-label>{{ image.image ? image.image.name : 'Selecciona una imagen' }}</mat-label>
+      <input matInput cdkFocusInitial class="z-0" />
+    </mat-form-field>
+
+  </form>
+
+  <div class="buttons">
+    <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+  </div>
+</div>

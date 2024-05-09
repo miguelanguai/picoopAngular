@@ -11,5 +11,5 @@ export class Image {
   img_uploadingDate: Date;
   img_stage: string;
   img_whyDenied: string;
-  image: string;
+  image: File;
 }

@@ -16,7 +16,8 @@ export class PetitionListComponent implements OnInit {
 
 
   dataSource = new MatTableDataSource<Petition>();
-  displayedColumns: string[] = ['petitionTitle', 'petitionDescription', 'petitionDate'];
+  displayedColumns: string[] = ['petitionTitle', 'petitionDescription', 'petitionDate', 'action'];
+  petition: Petition;
 
   constructor(
     private petitionService: PetitionService,
@@ -41,6 +42,14 @@ export class PetitionListComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
       });
+    } else{
+      this.router.navigate(['/auth/signin']);
+    }
+  }
+  navigateToUploadImage(petition:Petition):void{
+    if (this.authService.isAuthenticated()) {
+    localStorage.setItem('currentPetition', JSON.stringify(petition));
+    this.router.navigate(['/user/image']);
     } else{
       this.router.navigate(['/auth/signin']);
     }
