@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private BASE_URL = "http://localhost:8080";
   private isAuthenticatedSubject = new Subject<boolean>();
 
   constructor(
@@ -17,9 +17,8 @@ export class AuthService {
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   async login(email: string, password: string): Promise<any> {
-    const url = `${this.BASE_URL}/auth/signin`;
     try {
-      const response = this.http.post<any>(url, { email, password }).toPromise()
+      const response = this.http.post<any>(environment.server+"/auth/signin", { email, password }).toPromise()
       this.setAuthenticated(true);
       return response;
 
@@ -29,10 +28,8 @@ export class AuthService {
   }
 
   async register(userData: any): Promise<any> {
-    const url = `${this.BASE_URL}/auth/signup`;
-
     try {
-      const response = this.http.post<any>(url, userData).toPromise()
+      const response = this.http.post<any>(environment.server+"/auth/signup", userData).toPromise()
       return response;
     } catch (error) {
       throw error;
@@ -40,12 +37,11 @@ export class AuthService {
   }
 
   async getAllUsers(token: string): Promise<any> {
-    const url = `${this.BASE_URL}/admin/get-all-users`;
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
     try {
-      const response = this.http.get<any>(url, { headers }).toPromise()
+      const response = this.http.get<any>(environment.server+"/admin/get-all-users", { headers }).toPromise()
       return response;
     } catch (error) {
       throw error;
@@ -53,12 +49,11 @@ export class AuthService {
   }
 
   async getYourProfile(token:string):Promise<any>{
-    const url = `${this.BASE_URL}/adminuser/get-profile`;
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
     try{
-      const response =  this.http.get<any>(url, {headers}).toPromise()
+      const response =  this.http.get<any>(environment.server+"/adminuser/get-profile", {headers}).toPromise()
       return response;
     }catch(error){
       throw error;
@@ -66,12 +61,11 @@ export class AuthService {
   }
 
   async getUsersById(userId: string, token:string):Promise<any>{
-    const url = `${this.BASE_URL}/admin/get-users/${userId}`;
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
     try{
-      const response =  this.http.get<any>(url, {headers}).toPromise()
+      const response =  this.http.get<any>(environment.server+"/admin/get-users/${userId}", {headers}).toPromise()
       return response;
     }catch(error){
       throw error;
@@ -79,12 +73,11 @@ export class AuthService {
   }
 
   async deleteUser(userId: string, token:string):Promise<any>{
-    const url = `${this.BASE_URL}/admin/delete/${userId}`;
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
     try{
-      const response =  this.http.delete<any>(url, {headers}).toPromise()
+      const response =  this.http.delete<any>(environment.server+"/admin/delete/${userId}", {headers}).toPromise()
       return response;
     }catch(error){
       throw error;
@@ -92,12 +85,11 @@ export class AuthService {
   }
 
   async updateUSer(userId: string, userData: any, token:string):Promise<any>{
-    const url = `${this.BASE_URL}/admin/update/${userId}`;
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
     try{
-      const response =  this.http.put<any>(url, userData, {headers}).toPromise()
+      const response =  this.http.put<any>(environment.server+"/admin/update/${userId}", userData, {headers}).toPromise()
       return response;
     }catch(error){
       throw error;

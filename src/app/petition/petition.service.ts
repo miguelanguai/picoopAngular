@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Petition } from './model/Petition';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,11 @@ export class PetitionService {
   ) { }
 
   getPetitions(): Observable<Petition[]> {
-    return this.http.get<Petition[]>('http://localhost:8080/public/petitions');
+    return this.http.get<Petition[]>(environment.server+"/public/petitions");
   }
 
   savePetition(petition: Petition, token: string): Observable<Petition> {
-    let url = 'http://localhost:8080/user/petitions';
+    let url = environment.server+"/user/petitions";
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
