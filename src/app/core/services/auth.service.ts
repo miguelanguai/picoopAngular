@@ -18,7 +18,7 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<any> {
     try {
-      const response = this.http.post<any>(environment.server+"/auth/signin", { email, password }).toPromise()
+      const response = this.http.post<any>(environment.url+"/auth/signin", { email, password }).toPromise()
       this.setAuthenticated(true);
       return response;
 
@@ -29,7 +29,7 @@ export class AuthService {
 
   async register(userData: any): Promise<any> {
     try {
-      const response = this.http.post<any>(environment.server+"/auth/signup", userData).toPromise()
+      const response = this.http.post<any>(environment.url+"/auth/signup", userData).toPromise()
       return response;
     } catch (error) {
       throw error;
@@ -41,7 +41,7 @@ export class AuthService {
       'Authorization': `Bearer ${token}`
     })
     try {
-      const response = this.http.get<any>(environment.server+"/admin/get-all-users", { headers }).toPromise()
+      const response = this.http.get<any>(environment.url+"/admin/get-all-users", { headers }).toPromise()
       return response;
     } catch (error) {
       throw error;
@@ -53,7 +53,7 @@ export class AuthService {
       'Authorization': `Bearer ${token}`
     })
     try{
-      const response =  this.http.get<any>(environment.server+"/adminuser/get-profile", {headers}).toPromise()
+      const response =  this.http.get<any>(environment.url+"/adminuser/get-profile", {headers}).toPromise()
       return response;
     }catch(error){
       throw error;
@@ -65,7 +65,7 @@ export class AuthService {
       'Authorization': `Bearer ${token}`
     })
     try{
-      const response =  this.http.get<any>(environment.server+"/admin/get-users/${userId}", {headers}).toPromise()
+      const response =  this.http.get<any>(environment.url+"/admin/get-users/${userId}", {headers}).toPromise()
       return response;
     }catch(error){
       throw error;
@@ -77,7 +77,7 @@ export class AuthService {
       'Authorization': `Bearer ${token}`
     })
     try{
-      const response =  this.http.delete<any>(environment.server+"/admin/delete/${userId}", {headers}).toPromise()
+      const response =  this.http.delete<any>(environment.url+"/admin/delete/${userId}", {headers}).toPromise()
       return response;
     }catch(error){
       throw error;
@@ -89,7 +89,7 @@ export class AuthService {
       'Authorization': `Bearer ${token}`
     })
     try{
-      const response =  this.http.put<any>(environment.server+"/admin/update/${userId}", userData, {headers}).toPromise()
+      const response =  this.http.put<any>(environment.url+"/admin/update/${userId}", userData, {headers}).toPromise()
       return response;
     }catch(error){
       throw error;

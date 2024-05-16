@@ -2,23 +2,24 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Petition } from './model/Petition';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PetitionService {
 
+  url = 'http://localhost:8080'
+
   constructor(
     private http: HttpClient
   ) { }
 
   getPetitions(): Observable<Petition[]> {
-    return this.http.get<Petition[]>(environment.server+"/public/petitions");
+    return this.http.get<Petition[]>(this.url+"/public/petitions");
   }
 
   savePetition(petition: Petition, token: string): Observable<Petition> {
-    let url = environment.server+"/user/petitions";
+    let url = this.url+"/user/petitions";
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
