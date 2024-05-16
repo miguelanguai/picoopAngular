@@ -5,6 +5,7 @@ import { ImageListComponent } from './image/image-list/image-list.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ImageUploadComponent } from './image/image-upload/image-upload.component';
+import { NotfoundComponent } from './core/notfound/notfound.component';
 
 const routes: Routes = [
   { path: 'public/petitions', component: PetitionListComponent },
@@ -12,6 +13,8 @@ const routes: Routes = [
   { path: 'auth/signin', component:LoginComponent},
   { path: 'auth/signup', component:RegisterComponent},
   { path: 'user/image', component:ImageUploadComponent },
+  { path: '', redirectTo: '/public/images', pathMatch: 'full' },
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({

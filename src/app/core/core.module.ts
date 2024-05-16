@@ -5,13 +5,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    NotfoundComponent
   ],
   imports: [
     CommonModule,
