@@ -6,7 +6,6 @@
     <ng-container matColumnDef="image">
       <mat-header-cell *matHeaderCellDef> Imagen </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{element.image}}
         <img [src]="'data:image/png;base64,' + element.image" alt='image' style="width: 100px; height: 100px;">
       </mat-cell>
     </ng-container>
