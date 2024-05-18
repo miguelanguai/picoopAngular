@@ -5,15 +5,22 @@
     <div class="image-card" *ngFor="let image of images">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>{{ image.imgTitle }}</mat-card-title>
+          <mat-card-title>
+            <div>
+            <p>
+              {{ image.imgTitle }}
+            </p>
+          </div>
+          </mat-card-title>
         </mat-card-header>
         <img mat-card-image [src]="'data:image/png;base64,' + image.image">
         <mat-card-content>
           <div class="image-description">
             <p>{{ image.img_description }}</p>
           </div>
-          <div class="image-date">
+          <div class="image-more-data">
             <span>{{ image.img_uploadingDate }}</span>
+            <span>|</span>
             <span>{{ image.user.email }}</span>
           </div>
         </mat-card-content>
