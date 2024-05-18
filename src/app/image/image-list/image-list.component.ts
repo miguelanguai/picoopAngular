@@ -10,10 +10,9 @@ import { ImageService } from '../image.service';
 })
 export class ImageListComponent implements OnInit {
   dataSource = new MatTableDataSource<Image>();
-  displayedColumns: string[] = ['imgTitle', 'img_type', 'img_description', 'img_uploadingDate', 'img_stage', 'image','name', 'id'];
+  displayedColumns: string[] = ['imgTitle', 'img_type', 'img_description', 'img_uploadingDate', 'img_stage', 'image', 'name', 'id'];
 
-  images: Image[];
-  imageTest: string;
+  images: Image[]=[];
 
   constructor(
     private imageService: ImageService
@@ -23,17 +22,12 @@ export class ImageListComponent implements OnInit {
     this.getImagesForTable();
   }
 
-  getImagesForTable(){
+  getImagesForTable() {
     this.imageService.getImages().subscribe(
-      images => this.dataSource.data = images
+      images => {
+        this.dataSource.data = images;
+        this.images = images;
+      }
     );
-  }
-
-  getImages(){
-    this.imageTest=this.stringToImage();
-  }
-
-  stringToImage():string{
-    return "hello";
   }
 }

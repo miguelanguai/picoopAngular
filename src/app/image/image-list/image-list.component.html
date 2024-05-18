@@ -1,51 +1,24 @@
 <div class="container">
   <h1>Listado de Imágenes</h1>
 
-  <mat-table [dataSource]="dataSource">
+  <div class="grid-container">
+    <div class="image-card" *ngFor="let image of images">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ image.imgTitle }}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="'data:image/png;base64,' + image.image">
+        <mat-card-content>
+          <div class="image-description">
+            <p>{{ image.img_description }}</p>
+          </div>
+          <div class="image-date">
+            <span>{{ image.img_uploadingDate }}</span>
+            <span>{{ image.user.email }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 
-    <ng-container matColumnDef="image">
-      <mat-header-cell *matHeaderCellDef> Imagen </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <img [src]="'data:image/png;base64,' + element.image" alt='image' style="width: 100px; height: 100px;">
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="imgTitle">
-      <mat-header-cell *matHeaderCellDef> Título Imagen </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.imgTitle}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="img_type">
-      <mat-header-cell *matHeaderCellDef> Formato Imagen </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.img_type}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="img_description">
-      <mat-header-cell *matHeaderCellDef> Descripción Imagen </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.img_description}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="img_uploadingDate">
-      <mat-header-cell *matHeaderCellDef> Fecha de Subida Imagen </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.img_uploadingDate}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="img_stage">
-      <mat-header-cell *matHeaderCellDef> Estado Imagen </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.img_stage}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Creador Imagen </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.user.email}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> Petición Imagen </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
 </div>

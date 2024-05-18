@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './auth/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './auth/register/register.component';
-
+import { MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,7 @@ import { RegisterComponent } from './auth/register/register.component';
     MatIconModule,
     MatButtonModule,
     FormsModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
