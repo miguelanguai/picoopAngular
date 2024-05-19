@@ -1,0 +1,51 @@
+.container {
+  min-width: 350px;
+  max-width: 500px;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  text-align: right;
+}
+
+.buttons button {
+  margin-left: 10px;
+}
+
+/* Media Queries para smartphones */
+@media (max-width: 767px) {
+  .container {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  input[matInput], input[type="file"] {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .buttons {
+    text-align: center;
+  }
+
+  .buttons button {
+    margin: 5px 0;
+    padding: 8px 16px;
+    width: 100%;
+  }
+}
