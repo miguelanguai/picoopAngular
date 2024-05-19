@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   isAuthenticated: boolean = false;
   isAdmin: boolean = false;
   isUser: boolean = false;
+  username:string;
 
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();
@@ -21,6 +22,13 @@ export class HeaderComponent implements OnInit {
     this.authService.isAuthenticated$.subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
     });
+    this.authService.getUserUsername()
+      .then((response: string) => {
+        this.username = response;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
 
   logout(): void {

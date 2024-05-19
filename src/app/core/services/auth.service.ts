@@ -137,5 +137,21 @@ export class AuthService {
     this.isAuthenticatedSubject.next(isAuthenticated);
   }
 
+  async getUserUsername(): Promise<string> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    try {
+      const response = await this.http.get(`${environment.url}/auth/username`, { headers, responseType: 'text' }).toPromise();
+      if (response === undefined || response === null) {
+        throw new Error('No username received');
+      }
+      return response;
+    } catch (error) {
+      console.error('Error fetching username:', error);
+      throw error;
+    }
+  }
 
 }

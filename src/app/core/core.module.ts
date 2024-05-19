@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -20,6 +21,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     RouterModule,
     MatIconModule,
     MatToolbarModule,
+    MatMenuModule
   ],
   exports: [
     HeaderComponent,
