@@ -2,18 +2,39 @@
   min-width: 350px;
   max-width: 500px;
   padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  text-align: right;
+}
+
+.buttons button {
+  margin-left: 10px;
+}
+
+@media (max-width: 767px) {
+  .container {
+    min-width: 90%;
+    max-width: 100%;
+    padding: 10px;
+  }
 
   form {
-      display: flex;
-      flex-direction: column;
-      margin-bottom:20px;
+    margin-bottom: 10px;
   }
 
   .buttons {
-    text-align: right;
+    text-align: center;
+  }
 
-    button {
-        margin-left: 10px;
-    }
+  .buttons button {
+    margin: 10px 0;
+    width: 100%;
   }
 }
