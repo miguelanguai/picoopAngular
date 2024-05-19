@@ -3,13 +3,13 @@
 
   <form>
     <mat-form-field>
-      <mat-label>Titulo</mat-label>
-      <input type="text" matInput placeholder="Título de la peticion" [value]="petition.petitionTitle" name="title"
+      <mat-label>Titulo de la petición</mat-label>
+      <input type="text" matInput [value]="petition.petitionTitle" name="title"
         disabled>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Descripción</mat-label>
-      <input type="text" matInput placeholder="Descripción de la peticion" [value]="petition.petitionDescription"
+      <mat-label>Descripción de la petición</mat-label>
+      <input type="text" matInput [value]="petition.petitionDescription"
         name="description" disabled>
     </mat-form-field>
     <mat-form-field>
@@ -30,7 +30,6 @@
     </mat-form-field>
     <mat-form-field class="w-full">
       <input type="file" (change)="onFileSelected($event)" accept=".jpeg,.jpg,.png"/>
-      <mat-label>{{ image.image ? image.image.name : 'Selecciona una imagen' }}</mat-label>
       <input matInput cdkFocusInitial class="z-0" />
     </mat-form-field>
 
