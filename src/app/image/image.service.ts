@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Image } from './model/Image';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 
 @Injectable({
@@ -17,6 +17,12 @@ export class ImageService {
 
   getImages(): Observable<Image[]> {
     return this.http.get<Image[]>(this.url+"/public/image");
+  }
+
+  getImagesFiltered(filter:string):Observable<Image[]> {
+    const params = new HttpParams().set('text', filter);
+    return this.http.get<Image[]>(`${this.url}/public/image/filtered`, { params });
+
   }
 
   saveImage(image:FormData, token: String): Observable<Image>{

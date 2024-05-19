@@ -1,16 +1,25 @@
 <div class="container">
   <h1>Listado de Imágenes</h1>
 
+  <form (submit)="getFilteredImages(filter)">
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <mat-label>Search for an image</mat-label>
+        <input matInput placeholder="Ex. orange cat jumping" [(ngModel)]="filter" name="filter" type="text">
+      </mat-form-field>
+      <button type="submit">Search</button>
+    </div>
+  </form>
   <div class="grid-container">
     <div class="image-card" *ngFor="let image of images">
       <mat-card>
         <mat-card-header>
           <mat-card-title>
             <div>
-            <p>
-              {{ image.imgTitle }}
-            </p>
-          </div>
+              <p>
+                {{ image.imgTitle }}
+              </p>
+            </div>
           </mat-card-title>
         </mat-card-header>
         <img mat-card-image [src]="'data:image/png;base64,' + image.image">

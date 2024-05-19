@@ -14,6 +14,8 @@ export class ImageListComponent implements OnInit {
 
   images: Image[]=[];
 
+  filter:string;
+
   constructor(
     private imageService: ImageService
   ) { }
@@ -24,6 +26,15 @@ export class ImageListComponent implements OnInit {
 
   getImagesForTable() {
     this.imageService.getImages().subscribe(
+      images => {
+        this.dataSource.data = images;
+        this.images = images;
+      }
+    );
+  }
+
+  getFilteredImages(filter:string){
+    this.imageService.getImagesFiltered(filter).subscribe(
       images => {
         this.dataSource.data = images;
         this.images = images;
