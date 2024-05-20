@@ -22,13 +22,16 @@ export class HeaderComponent implements OnInit {
     this.authService.isAuthenticated$.subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
     });
-    this.authService.getUserUsername()
+    if(this.isAuthenticated){
+
+      this.authService.getUserUsername()
       .then((response: string) => {
         this.username = response;
       })
       .catch(error => {
         console.error('Error:', error);
       });
+    }
   }
 
   logout(): void {

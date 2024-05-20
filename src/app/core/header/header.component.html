@@ -17,10 +17,12 @@
       <div class="header_login">
         <mat-icon>account_circle</mat-icon>
         <a *ngIf="!isAuthenticated" routerLink="/auth/signin" routerLinkActive="active">Sign in</a>
-        <button *ngIf="isAuthenticated" class="button-dropdown" mat-button [matMenuTriggerFor]="menu">{{username}} </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="logout()" routerLink="/public/images">Logout</button>
-        </mat-menu>
+        <div *ngIf="isAuthenticated">
+          <button class="button-dropdown" mat-button [matMenuTriggerFor]="menu">{{username}} </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()" routerLink="/public/images">Logout</button>
+          </mat-menu>
+        </div>
       </div>
     </div>
   </mat-toolbar-row>
