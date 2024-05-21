@@ -4,10 +4,11 @@
   <form (submit)="getFilteredImages(filter)">
     <div class="form-group">
       <mat-form-field class="example-full-width">
-        <mat-label>Search for an image</mat-label>
-        <input matInput placeholder="Ex. orange cat jumping" [(ngModel)]="filter" name="filter" type="text">
+        <mat-label>Busca una imagen</mat-label>
+        <input matInput placeholder="Ej. gato naranja disfrazado de perro" [(ngModel)]="filter" name="filter"
+          type="text">
       </mat-form-field>
-      <button type="submit">Search</button>
+      <button type="submit">Buscar</button>
     </div>
   </form>
   <div class="grid-container">
