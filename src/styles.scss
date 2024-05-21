@@ -50,3 +50,18 @@ body {
     justify-content: center;
   }
 }
+
+//styles for footer
+//With this styles, footer is not placed on the last elements of the body
+main {
+  min-height: 100%;
+  margin-bottom: -100px;
+}
+main:after {
+  content: "";
+  display: block;
+  height: 100px;
+}
+footer {
+  height: 100px;
+}
