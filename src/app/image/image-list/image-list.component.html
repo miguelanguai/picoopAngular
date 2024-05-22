@@ -12,7 +12,7 @@
     </div>
   </form>
   <div class="grid-container">
-    <div class="image-card" *ngFor="let image of images">
+    <div class="image-card" *ngFor="let image of paginatedImages">
       <mat-card>
         <mat-card-header>
           <mat-card-title>
@@ -36,6 +36,8 @@
         </mat-card-content>
       </mat-card>
     </div>
+    <mat-paginator [length]="images.length" [pageSize]="pageSize" [pageSizeOptions]="[3, 15, 21, 30]" aria-label="Select page" (page)="onPageChange($event)">
+    </mat-paginator>
   </div>
 
 </div>
