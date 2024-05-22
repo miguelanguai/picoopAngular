@@ -1,45 +1,41 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
-
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
-  formData: any = {
-    name: '',
-    email: '',
-    password: '',
-    role: ''
-  };
+export class RegisterComponent implements OnInit {
+
+  registerForm: FormGroup;
   errorMessage: string = '';
 
   constructor(
-    private readonly authService: AuthService,
-    private readonly router: Router
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
+  ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      role: ['', Validators.required]
+    });
+  }
+
   async handleSubmit() {
-
-    // Check if all fields are not empty
-    if (!this.formData.name || !this.formData.email || !this.formData.password || !this.formData.role) {
-      this.showError('Please fill in all fields.');
-      return;
-    }
-
-    // Confirm registration with user
-    const confirmRegistration = confirm('Are you sure you want to register this user?');
-    if (!confirmRegistration) {
+    if (this.registerForm.invalid) {
+      this.showError('Please fill in all fields correctly.');
       return;
     }
 
     try {
-      const response = await this.authService.register(this.formData);
+      const response = await this.authService.register(this.registerForm.value);
       if (response.statusCode === 200) {
         this.router.navigate(['/auth/signin']);
       } else {

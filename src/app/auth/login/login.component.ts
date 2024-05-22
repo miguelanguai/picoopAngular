@@ -34,7 +34,7 @@ export class LoginComponent {
         localStorage.setItem('role', response.role)
         this.router.navigate(['/public/images'])
       } else {
-        this.showError(response.message)
+        this.showError("Email or Password is not correct")
       }
     } catch (error: any) {
       this.showError(error.message)
