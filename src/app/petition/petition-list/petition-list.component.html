@@ -5,23 +5,29 @@
 
     <ng-container matColumnDef="petitionTitle">
       <mat-header-cell *matHeaderCellDef> Título petición </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.petitionTitle}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.petition.petitionTitle}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="petitionDescription">
       <mat-header-cell *matHeaderCellDef> Descripción petición </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.petitionDescription}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.petition.petitionDescription}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="petitionDate">
       <mat-header-cell *matHeaderCellDef> Fecha creación petición </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.petitionDate}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.petition.petitionDate}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="hasImage">
+      <mat-header-cell *matHeaderCellDef>Con Imágenes Subidas </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.hasImages}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" (click)="navigateToUploadImage(element)"><mat-icon>add</mat-icon></button>
+        <button mat-icon-button color="primary"
+          (click)="navigateToUploadImage(element)"><mat-icon>add</mat-icon></button>
       </mat-cell>
     </ng-container>
 
