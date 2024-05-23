@@ -137,6 +137,7 @@ export class AuthService {
     this.isAuthenticatedSubject.next(isAuthenticated);
   }
 
+  //UTILS
   async getUserUsername(): Promise<string> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
@@ -153,5 +154,24 @@ export class AuthService {
       throw error;
     }
   }
+
+  async getRole(): Promise<string> {
+    try {
+      const email = await this.getUserUsername();
+      const token = localStorage.getItem('token');
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      const response = await this.http.get(`${environment.url}/auth/adminuser/getrole/${email}`, { headers, responseType: 'text' }).toPromise();
+      if (response === undefined || response === null) {
+        throw new Error('No role received');
+      }
+      return response;
+    } catch (error) {
+      console.error('Error fetching role:', error);
+      throw error;
+    }
+  }
+
 
 }

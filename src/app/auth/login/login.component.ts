@@ -33,6 +33,11 @@ export class LoginComponent {
         localStorage.setItem('token', response.token)
         localStorage.setItem('role', response.role)
         this.router.navigate(['/public/images'])
+
+        //el setItem role del response.role no funciona, se añade con el metodo getRole creado
+        let role = await this.authService.getRole();
+        localStorage.setItem('role', role);
+
       } else {
         this.showError("Email or Password is not correct")
       }

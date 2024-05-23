@@ -63,14 +63,10 @@ obtenerFormatoImagen(file: File): string {
     for (const formato in formatosImagen) {
       const header = formato.toUpperCase();
       if (hex.startsWith(header)) {
-        // Imprimimos el formato de la imagen
-        console.log("Formato de la imagen:", formatosImagen[formato]);
         imageType= formatosImagen[formato]; // Devolvemos el tipo de imagen
         break;
       }
     }
-
-    console.log("Formato de la imagen: Desconocido");
   };
 
   // Leemos los primeros bytes del archivo como un ArrayBuffer
@@ -96,12 +92,9 @@ onSave() {
   this.image.img_type = this.obtenerFormatoImagen(this.image.image);
 
   const token = localStorage.getItem('token') || '';
-  console.log(token);
-
 
   this.imageService.saveImage(formData, token).subscribe(
     result => {
-      console.log('Image uploaded successfully:', result);
       // Manejar la respuesta como sea necesario, por ejemplo, redirigir a otra página
       this.router.navigate(['/public/images']);
     },

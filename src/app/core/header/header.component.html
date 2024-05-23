@@ -12,6 +12,9 @@
         <div class="header_button">
           <a routerLink="/public/images" routerLinkActive="active">Imágenes</a>
         </div>
+        <div class="header_button" *ngIf="isAdmin">
+          <a routerLink="/admin/control" routerLinkActive="active">Página de Administrador</a>
+        </div>
       </div>
 
       <div class="header_login">
