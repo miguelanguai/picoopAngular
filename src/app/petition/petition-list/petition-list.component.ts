@@ -59,9 +59,9 @@ export class PetitionListComponent implements OnInit {
       this.router.navigate(['/auth/signin']);
     }
   }
-  navigateToUploadImage(petition: Petition): void {
+  navigateToUploadImage(petitionPassing: PetitionHasImage): void {
     if (this.authService.isAuthenticated()) {
-      localStorage.setItem('currentPetition', JSON.stringify(petition));
+      localStorage.setItem('currentPetition', JSON.stringify(petitionPassing.petition));
       this.router.navigate(['/user/image']);
     } else {
       this.router.navigate(['/auth/signin']);

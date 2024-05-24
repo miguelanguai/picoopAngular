@@ -15,6 +15,9 @@ export class ImageUploadComponent implements OnInit {
   currentDate: Date = new Date();
   petition: Petition;
 
+  maxSize:number=1043794; //file with 1020kb, tested to upload
+  errorMessage: string = '';
+
   constructor(
     private imageService: ImageService,
     private router: Router
@@ -30,7 +33,14 @@ export class ImageUploadComponent implements OnInit {
   onFileSelected(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
-      this.image.image = inputElement.files[0];
+      const file = inputElement.files[0];
+      this.image.image = file;
+
+      if(file.size>this.maxSize){
+        console.log("mayor");
+        this.showError("El tamaño de la imagen es mayor al posible. Por favor, elija otra(max: 1mb)")
+      }
+      console.log('File size:', file.size, 'bytes');
     }
   }
 
@@ -84,7 +94,6 @@ onSave() {
   formData.append('imgTitle', this.image.imgTitle);
   formData.append('img_description', this.image.img_description);
   formData.append('img_type', this.image.img_type);
-  //formData.append('img_uploadingDate',this.currentDate.toISOString());
   formData.append('img_stage', this.image.img_stage);
   formData.append('img_whyDenied', this.image.img_whyDenied);
 
@@ -99,10 +108,16 @@ onSave() {
       this.router.navigate(['/public/images']);
     },
     error => {
-      console.error('Error uploading image:', error);
-      // Manejar el error apropiadamente
+      this.showError("El tamaño de la imagen es mayor al posible. Por favor, elija otra(max: 1mb)");
     }
   );
+}
+
+showError(mess: string) {
+  this.errorMessage = mess;
+  setTimeout(() => {
+    this.errorMessage = ''
+  }, 6000)
 }
 
 }
