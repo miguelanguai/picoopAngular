@@ -7,3 +7,11 @@
   width: 100%;
   text-align: center;
 }
+@media (max-width: 767px) {
+  .container-fluid {
+    padding: 20px; /* Aumenta el padding para pantallas pequeñas */
+    font-size: 14px; /* Ajusta el tamaño de la fuente si es necesario */
+    position: static;
+    text-align: center;
+  }
+}

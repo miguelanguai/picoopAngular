@@ -15,11 +15,11 @@ export class PetitionService {
   ) { }
 
   getPetitions(): Observable<Petition[]> {
-    return this.http.get<Petition[]>(this.url+"/public/petitions");
+    return this.http.get<Petition[]>(this.url + "/public/petitions");
   }
 
   savePetition(petition: Petition, token: string): Observable<Petition> {
-    let url = this.url+"/user/petitions";
+    let url = this.url + "/user/petitions";
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
@@ -32,7 +32,11 @@ export class PetitionService {
   }
 
 
-  deletePetition(petition : number): Observable<any> {
+  deletePetition(petition: number): Observable<any> {
     return of(null);
+  }
+
+  hasImages(petitionId: number): Observable<boolean> {
+    return this.http.get<boolean>(this.url + "/public/petitions/hasimages/"+petitionId);
   }
 }

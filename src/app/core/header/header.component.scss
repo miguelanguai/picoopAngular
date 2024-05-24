@@ -4,68 +4,93 @@
 }
 
 .header_container {
+  display: flex;
+  width: 100%;
+
+  .header_title {
     display: flex;
-    width: 100%;
-    .header_title {
-        display: flex;
-    }
+  }
 
-    .header_separator {
-        margin-left: 30px;
-        margin-right: 30px;
-    }
+  .header_separator {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 
-    .header_menu {
-        flex-grow: 4;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+  .header_menu {
+    flex-grow: 4;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-        .header_button {
-            margin-left: 1em;
-            margin-right: 1em;
-            font-size: 16px;
-
-            a {
-              font-weight: lighter;
-              text-decoration: none;
-              cursor: pointer;
-              color: white;
-            }
-
-            a:hover {
-              color: grey;
-            }
-
-            a.active {
-              font-weight: normal;
-              text-decoration: underline;
-              color: lightyellow;
-            }
-
-        }
-    }
-
-    .header_login {
-      display: flex;
-      align-items: center;
+    .header_button {
+      margin-left: 1em;
+      margin-right: 1em;
       font-size: 16px;
-      cursor: pointer;
+
+
+    }
+  }
+  a {
+    font-weight: normal;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+  }
+
+  a:hover {
+    color: rgb(255, 255, 0);
+  }
+
+  a.active {
+    font-weight: normal;
+    text-decoration: underline;
+    color: lightyellow;
+  }
+
+  a.active:hover {
+    color: rgb(255, 255, 0);
+  }
+
+  .header_login {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+
+    a:visited {
       color: white;
-      text-decoration: none;
-      a:visited{
-        color: white;
-      }
-      .mat-icon {
-          vertical-align: sub;
-      }
+    }
+
+    .mat-icon {
+      vertical-align: sub;
+    }
   }
 }
 
-.button-dropdown{
+.button-dropdown {
   color: white;
   border: none;
   text-decoration: underline;
   background-color: transparent;
   box-shadow: none;
+}
+
+@media (max-width: 767px) {
+  .header_menu {
+    display: none !important;
+  }
+
+  .header_menu_mobile {
+    padding-bottom: 20px;
+  }
+
+}
+
+@media(min-width:768px){
+
+  .header_menu_mobile{
+    display: none;
+  }
 }

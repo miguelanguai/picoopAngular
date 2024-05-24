@@ -6,6 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { PetitionEditComponent } from '../petition-edit/petition-edit.component';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
+import { PetitionHasImage } from '../model/PetitionHasImage';
+import { map } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-petition-list',
@@ -15,22 +18,32 @@ import { Router } from '@angular/router';
 export class PetitionListComponent implements OnInit {
 
 
-  dataSource = new MatTableDataSource<Petition>();
-  displayedColumns: string[] = ['petitionTitle', 'petitionDescription', 'petitionDate', 'action'];
+  dataSource = new MatTableDataSource<PetitionHasImage>();
+  displayedColumns: string[] = ['petitionTitle', 'petitionDescription', 'petitionDate', 'hasImage', 'action'];
   petition: Petition;
+  petitionHasImage: PetitionHasImage;
 
   constructor(
     private petitionService: PetitionService,
     public dialog: MatDialog,
     private authService: AuthService,
     private router: Router,
-  ) { }
+  ) {
+    this.dataSource = new MatTableDataSource<PetitionHasImage>();
+  }
 
   ngOnInit(): void {
+    this.petitionService.getPetitions().subscribe(petitions => {
+      const petitionsWithImages$ = petitions.map(petition =>
+        this.petitionService.hasImages(petition.petitionId).pipe(
+          map(hasImages => ({ petition, hasImages }))
+        )
+      );
 
-    this.petitionService.getPetitions().subscribe(
-      petitions => this.dataSource.data = petitions
-    );
+      forkJoin(petitionsWithImages$).subscribe(petitionsWithImages => {
+        this.dataSource.data = petitionsWithImages;
+      });
+    });
   }
   createPetition() {
     if (this.authService.isAuthenticated()) {
@@ -42,16 +55,26 @@ export class PetitionListComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
       });
-    } else{
+    } else {
       this.router.navigate(['/auth/signin']);
     }
   }
-  navigateToUploadImage(petition:Petition):void{
+  navigateToUploadImage(petition: Petition): void {
     if (this.authService.isAuthenticated()) {
-    localStorage.setItem('currentPetition', JSON.stringify(petition));
-    this.router.navigate(['/user/image']);
-    } else{
+      localStorage.setItem('currentPetition', JSON.stringify(petition));
+      this.router.navigate(['/user/image']);
+    } else {
       this.router.navigate(['/auth/signin']);
     }
+  }
+
+  hasImages(petitionId: number): boolean {
+    let hasImages: boolean = false;
+    this.petitionService.hasImages(petitionId).subscribe((result: boolean) => {
+      console.log("holamundo");
+
+      hasImages = result;
+    });
+    return hasImages;
   }
 }

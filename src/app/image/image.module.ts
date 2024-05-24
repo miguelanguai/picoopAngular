@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule} from '@angular/material/card';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { MatCardModule} from '@angular/material/card';
     FormsModule,
     MatInputModule,
     MatCardModule,
+    MatPaginatorModule,
   ]
 })
 export class ImageModule { }
