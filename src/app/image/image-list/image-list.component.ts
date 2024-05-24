@@ -41,6 +41,7 @@ export class ImageListComponent implements OnInit {
     this.imageService.getImagesFiltered(filter).subscribe(
       images => {
         this.images = images;
+        this.updatePaginatedImages();
       }
     );
   }
