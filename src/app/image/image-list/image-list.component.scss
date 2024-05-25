@@ -57,6 +57,9 @@ button{
 }
 
 @media (max-width: 767px) {
+  .container{
+    padding:5px 0 80px 0;
+  }
   .grid-container {
     grid-template-columns: 1fr;
     padding-bottom:20px;

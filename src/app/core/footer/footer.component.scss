@@ -2,15 +2,12 @@
   background-color: blue;
   color: white;
   padding: 10px;
-  bottom: 0;
-  position: fixed;
-  width: 100%;
   text-align: center;
 }
 @media (max-width: 767px) {
   .container-fluid {
-    padding: 20px; /* Aumenta el padding para pantallas pequeñas */
-    font-size: 14px; /* Ajusta el tamaño de la fuente si es necesario */
+    padding: 20px;
+    font-size: 14px;
     position: static;
     text-align: center;
   }
