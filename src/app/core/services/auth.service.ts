@@ -96,7 +96,7 @@ export class AuthService {
     }
   }
 
-  /***AUTHEMNTICATION METHODS */
+  /***AUTHENTICATION METHODS */
   logOut():void{
     if(typeof localStorage !== 'undefined'){
       localStorage.removeItem('token')

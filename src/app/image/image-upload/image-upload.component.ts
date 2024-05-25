@@ -15,7 +15,7 @@ export class ImageUploadComponent implements OnInit {
   currentDate: Date = new Date();
   petition: Petition;
 
-  maxSize:number=1043794; //file with 1020kb, tested to upload
+  maxSize: number = 1043794; //file with 1020kb, tested to upload
   errorMessage: string = '';
 
   constructor(
@@ -31,93 +31,89 @@ export class ImageUploadComponent implements OnInit {
   }
 
   onFileSelected(event: Event): void {
+    //when selecting a file in the image-upload page
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
       this.image.image = file;
 
-      if(file.size>this.maxSize){
-        console.log("mayor");
+      if (file.size > this.maxSize) {
         this.showError("El tamaño de la imagen es mayor al posible. Por favor, elija otra(max: 1mb)")
       }
-      console.log('File size:', file.size, 'bytes');
     }
   }
 
-  // Modifica obtenerFormatoImagen para que devuelva el tipo de imagen en lugar de asignarlo directamente
-obtenerFormatoImagen(file: File): string {
-  // Estos son los formatos de imagen
-  const formatosImagen: { [header: string]: string } = {
-    "89504E47": "PNG",
-    "47494638": "GIF",
-    "FFD8": "JPEG",
-    "25504446": "PDF",
-    "49492A00": "TIFF",
-    "424D": "BMP",
-    "52494646": "WEBP",
-    "3C737667": "SVG"
-  };
+  obtenerFormatoImagen(file: File): string {
+    // Image Formats
+    const formatosImagen: { [header: string]: string } = {
+      "89504E47": "PNG",
+      "47494638": "GIF",
+      "FFD8": "JPEG",
+      "25504446": "PDF",
+      "49492A00": "TIFF",
+      "424D": "BMP",
+      "52494646": "WEBP",
+      "3C737667": "SVG"
+    };
 
-  const reader = new FileReader();
+    const reader = new FileReader();
 
-  let imageType = "";
+    let imageType = "";
 
-  reader.onloadend = function (): void {
-    // Primeros bytes del archivo como una subcadena en formato hexadecimal
-    const bytes = new Uint8Array(reader.result as ArrayBuffer);
-    let hex = "";
-    for (let i = 0; i < bytes.length; i++) {
-      hex += bytes[i].toString(16);
-    }
-
-    for (const formato in formatosImagen) {
-      const header = formato.toUpperCase();
-      if (hex.startsWith(header)) {
-        imageType= formatosImagen[formato]; // Devolvemos el tipo de imagen
-        break;
+    reader.onloadend = function (): void {
+      // First bytes of the file as a subchain in hexadecimal format
+      const bytes = new Uint8Array(reader.result as ArrayBuffer);
+      let hex = "";
+      for (let i = 0; i < bytes.length; i++) {
+        hex += bytes[i].toString(16);
       }
-    }
-  };
 
-  // Leemos los primeros bytes del archivo como un ArrayBuffer
-  reader.readAsArrayBuffer(file.slice(0, 8));
-  return imageType;
-}
+      for (const formato in formatosImagen) {
+        const header = formato.toUpperCase();
+        if (hex.startsWith(header)) {
+          imageType = formatosImagen[formato]; // Return image type
+          break;
+        }
+      }
+    };
 
-// Modifica onSave para llamar a obtenerFormatoImagen y establecer image.img_type antes de enviar el formulario
-onSave() {
-  const formData = new FormData();
-  // imagenes nuevas son seteadas a uploaded
-  this.image.img_stage='uploaded';
-  formData.append('file', this.image.image);
-  formData.append('petition_id', this.petition.petitionId.toString());
-  formData.append('imgTitle', this.image.imgTitle);
-  formData.append('img_description', this.image.img_description);
-  formData.append('img_type', this.image.img_type);
-  formData.append('img_stage', this.image.img_stage);
-  formData.append('img_whyDenied', this.image.img_whyDenied);
+    // Read firsts bytes of the file as ArrayBuffer
+    reader.readAsArrayBuffer(file.slice(0, 8));
+    return imageType;
+  }
 
-  // Llamamos a obtenerFormatoImagen para obtener el tipo de imagen
-  this.image.img_type = this.obtenerFormatoImagen(this.image.image);
+  onSave() {
+    const formData = new FormData();
+    // new images are setted to uploaded
+    this.image.img_stage = 'uploaded';
+    formData.append('file', this.image.image);
+    formData.append('petition_id', this.petition.petitionId.toString());
+    formData.append('imgTitle', this.image.imgTitle);
+    formData.append('img_description', this.image.img_description);
+    formData.append('img_type', this.image.img_type);
+    formData.append('img_stage', this.image.img_stage);
+    formData.append('img_whyDenied', this.image.img_whyDenied);
 
-  const token = localStorage.getItem('token') || '';
+    // Obtain image format
+    this.image.img_type = this.obtenerFormatoImagen(this.image.image);
 
-  this.imageService.saveImage(formData, token).subscribe(
-    result => {
-      // Manejar la respuesta como sea necesario, por ejemplo, redirigir a otra página
-      this.router.navigate(['/public/images']);
-    },
-    error => {
-      this.showError("El tamaño de la imagen es mayor al posible. Por favor, elija otra(max: 1mb)");
-    }
-  );
-}
+    const token = localStorage.getItem('token') || '';
 
-showError(mess: string) {
-  this.errorMessage = mess;
-  setTimeout(() => {
-    this.errorMessage = ''
-  }, 6000)
-}
+    this.imageService.saveImage(formData, token).subscribe(
+      result => {
+        this.router.navigate(['/public/images']);
+      },
+      error => {
+        this.showError("El tamaño de la imagen es mayor al posible. Por favor, elija otra(max: 1mb)");
+      }
+    );
+  }
+
+  showError(mess: string) {
+    this.errorMessage = mess;
+    setTimeout(() => {
+      this.errorMessage = ''
+    }, 6000)
+  }
 
 }
