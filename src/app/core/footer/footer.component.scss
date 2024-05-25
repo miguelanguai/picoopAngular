@@ -1,13 +1,13 @@
 .container-fluid {
   background-color: blue;
   color: white;
-  padding: 10px;
+  padding: 0.625rem;
   text-align: center;
 }
 @media (max-width: 767px) {
   .container-fluid {
-    padding: 20px;
-    font-size: 14px;
+    padding: 1.25rem;
+    font-size: 0.875rem;
     position: static;
     text-align: center;
   }
