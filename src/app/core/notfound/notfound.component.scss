@@ -1,13 +1,11 @@
 .page-not-found {
   text-align: center;
   margin-top: 3.125rem;
-}
-
-.page-not-found h1 {
-  font-size: 2.25rem;
-  margin-bottom: 1.25rem;
-}
-
-.page-not-found p {
-  font-size: 1.125rem;
+  h1{
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
+  }
+  p{
+    font-size: 1.125rem;
+  }
 }

@@ -17,7 +17,7 @@ export class ImageListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   paginatedImages: Image[] = [];
-  pageSize = 15;
+  pageSize = 16;
   currentPage = 0;
 
   constructor(

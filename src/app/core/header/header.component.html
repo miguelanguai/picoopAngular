@@ -17,23 +17,11 @@
         </div>
       </div>
 
-      <div class="header_menu_mobile">
-        <div class="header_button">
-          <a routerLink="/public/petitions" routerLinkActive="active">Peticiones</a>
-        </div>
-        <div class="header_button">
-          <a routerLink="/public/images" routerLinkActive="active">Imágenes</a>
-        </div>
-        <div class="header_button" *ngIf="isAdmin">
-          <a routerLink="/admin/control" routerLinkActive="active">Página de Administrador</a>
-        </div>
-      </div>
-
       <div class="header_login">
-        <mat-icon>account_circle</mat-icon>
         <a *ngIf="!isAuthenticated" routerLink="/auth/signin" routerLinkActive="active">Sign in</a>
         <div *ngIf="isAuthenticated">
-          <button class="button-dropdown" mat-button [matMenuTriggerFor]="menu">{{username}} </button>
+          <button class="button-dropdown pc-view" mat-button [matMenuTriggerFor]="menu"> <mat-icon>account_circle</mat-icon>{{username}} </button>
+          <button class="button-dropdown mobile-view" mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="logout()" routerLink="/public/images">Logout</button>
           </mat-menu>

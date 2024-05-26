@@ -1,21 +1,24 @@
 .container {
-  min-width: 350px;
-  max-width: 500px;
   padding: 1.25rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+  }
+
+  .buttons {
+    text-align: right;
+    button {
+      margin-left: 0.625rem;
+    }
+  }
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.25rem;
-}
-
-.buttons {
-  text-align: right;
-}
-
-.buttons button {
-  margin-left: 0.625rem;
+@media (min-width: 768px) {
+  .container {
+    margin: 2rem;
+  }
 }
 
 @media (max-width: 767px) {
@@ -23,18 +26,17 @@ form {
     min-width: 90%;
     max-width: 100%;
     padding: 0.625rem;
-  }
 
-  form {
-    margin-bottom: 0.625rem;
-  }
+    form {
+      margin-bottom: 0.625rem;
+    }
 
-  .buttons {
-    text-align: center;
-  }
-
-  .buttons button {
-    margin: 0.625rem 0;
-    width: 100%;
+    .buttons {
+      text-align: center;
+      button {
+        margin: 0.625rem 0;
+        width: 100%;
+      }
+    }
   }
 }

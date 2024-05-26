@@ -1,19 +1,92 @@
 .mat-toolbar {
   background-color: blue;
   color: white;
-}
 
-.header_container {
-  display: flex;
-  width: 100%;
-
-  .header_title {
+  .header_container {
     display: flex;
+    width: 100%;
+
+    .header_title {
+      display: flex;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      color: white;
+    }
+
+    a:hover {
+      color: rgb(255, 255, 0);
+    }
+
+    a.active {
+      text-decoration: underline;
+      color: lightyellow;
+    }
+
+    a.active:hover {
+      color: rgb(255, 255, 0);
+    }
+
+    .header_login {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      cursor: pointer;
+      color: white;
+      text-decoration: none;
+
+      a:visited {
+        color: white;
+      }
+
+      a:hover {
+        color: rgb(255, 255, 0);
+      }
+
+      .mat-icon {
+        vertical-align: sub;
+      }
+    }
   }
 
-  .header_separator {
-    margin-left: 1.875rem;
-    margin-right: 1.875rem;
+  .button-dropdown {
+    color: white;
+    border: none;
+    text-decoration: underline;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .header_title {
+    margin: 0 0.25rem;
+  }
+
+  .header_menu {
+    flex-grow: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header_button {
+    margin-left: 1em;
+    margin-right: 1em;
+    font-size: 1rem;
+  }
+
+  .pc-view {
+    display: none;
+  }
+
+}
+
+@media(min-width:768px) {
+  .header_title {
+    margin: 0 2.5rem;
   }
 
   .header_menu {
@@ -26,71 +99,10 @@
       margin-left: 1em;
       margin-right: 1em;
       font-size: 1rem;
-
-
     }
   }
-  a {
-    font-weight: normal;
-    text-decoration: none;
-    cursor: pointer;
-    color: white;
-  }
 
-  a:hover {
-    color: rgb(255, 255, 0);
-  }
-
-  a.active {
-    font-weight: normal;
-    text-decoration: underline;
-    color: lightyellow;
-  }
-
-  a.active:hover {
-    color: rgb(255, 255, 0);
-  }
-
-  .header_login {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    cursor: pointer;
-    color: white;
-    text-decoration: none;
-
-    a:visited {
-      color: white;
-    }
-
-    .mat-icon {
-      vertical-align: sub;
-    }
-  }
-}
-
-.button-dropdown {
-  color: white;
-  border: none;
-  text-decoration: underline;
-  background-color: transparent;
-  box-shadow: none;
-}
-
-@media (max-width: 767px) {
-  .header_menu {
-    display: none !important;
-  }
-
-  .header_menu_mobile {
-    padding-bottom: 1.25rem;
-  }
-
-}
-
-@media(min-width:768px){
-
-  .header_menu_mobile{
+  .mobile-view {
     display: none;
   }
 }
